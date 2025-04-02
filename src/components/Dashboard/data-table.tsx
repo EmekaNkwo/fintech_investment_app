@@ -107,7 +107,7 @@ const columns: ColumnDef<ITransaction>[] = [
   },
 ];
 
-export function DataTable() {
+export const DataTable = React.memo(() => {
   const {
     transData,
     setType,
@@ -118,14 +118,10 @@ export function DataTable() {
     setPagination,
   } = useDashboard();
 
-  const [data, setData] = React.useState<ITransaction[]>([]);
-
-  // Update data when transData changes
-  React.useEffect(() => {
-    if (transData?.data) {
-      setData(transData.data.data); // Assuming transData.data contains the array of transactions
-    }
-  }, [transData]);
+  const data = React.useMemo(
+    () => transData?.data?.data || [],
+    [transData?.data]
+  );
 
   const table = useReactTable({
     data,
@@ -182,4 +178,4 @@ export function DataTable() {
       />
     </div>
   );
-}
+});

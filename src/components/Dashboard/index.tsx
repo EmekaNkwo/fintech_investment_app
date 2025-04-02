@@ -1,9 +1,9 @@
 import React from "react";
 import { SectionCards } from "./section-cards";
-import { ChartAreaInteractive } from "./chart-area-interactive";
 import { DataTable } from "./data-table";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
+import ChartAreaInteractive from "./chart-area-interactive";
 
 const Dashboard = () => {
   return (

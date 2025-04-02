@@ -37,9 +37,15 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartAreaInteractive() {
-  const { timeRange, setTimeRange, filteredData, isMobile, metricsData } =
-    useDashboard();
+const ChartAreaInteractive = React.memo(() => {
+  const {
+    timeRange,
+    setTimeRange,
+    filteredData,
+    isMobile,
+    metricsData,
+    timeRangeText,
+  } = useDashboard();
 
   return (
     <Card className="@container/card">
@@ -47,21 +53,9 @@ export function ChartAreaInteractive() {
         <CardTitle>Monthly Comparison</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last{" "}
-            {timeRange === "last3months"
-              ? "3 months"
-              : timeRange === "last30days"
-              ? "30 days"
-              : "7 days"}
+            Total for the last {timeRangeText}
           </span>
-          <span className="@[540px]/card:hidden">
-            Last{" "}
-            {timeRange === "last3months"
-              ? "3 months"
-              : timeRange === "last30days"
-              ? "30 days"
-              : "7 days"}
-          </span>
+          <span className="@[540px]/card:hidden">Last {timeRangeText}</span>
         </CardDescription>
         <CardAction>
           <ToggleGroup
@@ -111,4 +105,6 @@ export function ChartAreaInteractive() {
       </CardContent>
     </Card>
   );
-}
+});
+
+export default ChartAreaInteractive;

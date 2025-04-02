@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "../ui/separator";
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 
 import { MetricResponse } from "@/shared/models";
 import { Skeleton } from "../ui/skeleton";
@@ -30,56 +30,54 @@ interface BalanceCardProps {
   footer?: ReactNode;
 }
 
-const AchievementCard = ({
-  icon: Icon,
-  title,
-  amount,
-}: {
-  icon: React.ElementType;
-  title: string;
-  amount: string;
-}) => (
-  <div className="line-clamp-1 flex gap-1 font-medium items-start">
-    <Icon className="size-4 mt-[1px]" />
-    <div className="flex flex-col">
-      <span className="text-muted-foreground text-xs">{title}</span>
-      <span>{amount}</span>
+const AchievementCard = memo(
+  ({
+    icon: Icon,
+    title,
+    amount,
+  }: {
+    icon: React.ElementType;
+    title: string;
+    amount: string;
+  }) => (
+    <div className="line-clamp-1 flex gap-1 font-medium items-start">
+      <Icon className="size-4 mt-[1px]" />
+      <div className="flex flex-col">
+        <span className="text-muted-foreground text-xs">{title}</span>
+        <span>{amount}</span>
+      </div>
     </div>
-  </div>
+  )
 );
 
-const BalanceCard: React.FC<BalanceCardProps> = ({
-  title,
-  amount,
-  footer,
-  isFooterAvailable,
-  rightDesc,
-}) => {
-  return (
-    <Card className="@container/card">
-      <CardHeader>
-        <CardDescription>{title}</CardDescription>
-        <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-          {amount}
-        </CardTitle>
-        {rightDesc && (
-          <CardAction>
-            <Badge variant="outline">{rightDesc}</Badge>
-          </CardAction>
-        )}
-      </CardHeader>
+const BalanceCard: React.FC<BalanceCardProps> = memo(
+  ({ title, amount, footer, isFooterAvailable, rightDesc }) => {
+    return (
+      <Card className="@container/card">
+        <CardHeader>
+          <CardDescription>{title}</CardDescription>
+          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            {amount}
+          </CardTitle>
+          {rightDesc && (
+            <CardAction>
+              <Badge variant="outline">{rightDesc}</Badge>
+            </CardAction>
+          )}
+        </CardHeader>
 
-      {isFooterAvailable && (
-        <>
-          <Separator />
-          <CardFooter className="flex items-center justify-between gap-1.5 text-sm">
-            {footer}
-          </CardFooter>
-        </>
-      )}
-    </Card>
-  );
-};
+        {isFooterAvailable && (
+          <>
+            <Separator />
+            <CardFooter className="flex items-center justify-between gap-1.5 text-sm">
+              {footer}
+            </CardFooter>
+          </>
+        )}
+      </Card>
+    );
+  }
+);
 
 export function SectionCards() {
   const { metricsData: metrics } = useDashboard();

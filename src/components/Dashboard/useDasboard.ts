@@ -3,7 +3,7 @@ import {
   useGetDashboardStatsQuery,
   useGetDashboardTransactionQuery,
 } from "@/redux/api/dashboardApi";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SortingState } from "@tanstack/react-table";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -46,6 +46,19 @@ const useDashboard = () => {
     }
   );
 
+  const timeRangeText = useMemo(() => {
+    switch (timeRange) {
+      case "last3months":
+        return "3 months";
+      case "last30days":
+        return "30 days";
+      case "last7days":
+        return "7 days";
+      default:
+        return "";
+    }
+  }, [timeRange]);
+
   useEffect(() => {
     if (isMobile) {
       setTimeRange("last7days");
@@ -66,6 +79,7 @@ const useDashboard = () => {
     timeRange,
     setTimeRange,
     isMobile,
+    timeRangeText,
   };
 };
 
