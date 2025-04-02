@@ -14,7 +14,7 @@ export function findCurrentSidebarItem(
   navItems: NavItem[],
   currentPath: string
 ): NavItem | null {
-  let bestMatch: NavItem | null = null;
+  const bestMatch: NavItem | null = null;
 
   for (const item of navItems) {
     // Exact match always wins

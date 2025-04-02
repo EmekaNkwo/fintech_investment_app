@@ -50,6 +50,8 @@ const AchievementCard = memo(
   )
 );
 
+AchievementCard.displayName = "AchievementCard";
+
 const BalanceCard: React.FC<BalanceCardProps> = memo(
   ({ title, amount, footer, isFooterAvailable, rightDesc }) => {
     return (
@@ -78,6 +80,8 @@ const BalanceCard: React.FC<BalanceCardProps> = memo(
     );
   }
 );
+
+BalanceCard.displayName = "BalanceCard";
 
 export function SectionCards() {
   const { metricsData: metrics } = useDashboard();

@@ -107,4 +107,6 @@ const ChartAreaInteractive = React.memo(() => {
   );
 });
 
+ChartAreaInteractive.displayName = "ChartAreaInteractive";
+
 export default ChartAreaInteractive;

@@ -38,7 +38,7 @@ export async function GET(request: Request) {
       message: "Transactions retrieved successfully",
       data: filteredTransactions,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         message: "Validation error",
