@@ -42,3 +42,16 @@ export interface MetricResponse {
   savingsBalance: SavingsBalance;
   goalsBalance: GoalsBalance;
 }
+
+export interface LoginResponse {
+  status: string;
+  message: string;
+  token: string;
+}
+
+export interface ErrorObject {
+  status: number;
+  data: {
+    message: string;
+  };
+}

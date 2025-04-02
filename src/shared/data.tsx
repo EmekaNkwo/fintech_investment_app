@@ -285,3 +285,8 @@ export const transactionTableData: ITransaction[] = [
     beneficiary: "Utility Provider",
   },
 ];
+
+export const loginData = {
+  email: "tryve@tryve.com",
+  password: "password",
+};

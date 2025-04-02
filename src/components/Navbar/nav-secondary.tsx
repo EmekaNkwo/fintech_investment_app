@@ -1,6 +1,6 @@
 "use client";
 import { ComponentPropsWithoutRef } from "react";
-import { type Icon } from "@tabler/icons-react";
+import { IconArrowLeft, type Icon } from "@tabler/icons-react";
 
 import {
   SidebarGroup,
@@ -9,6 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function NavSecondary({
   items,
@@ -27,13 +28,24 @@ export function NavSecondary({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>
+                <Link href={item.url}>
                   <item.icon />
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+          <SidebarMenuButton asChild>
+            <Link
+              href={"/"}
+              onClick={() => {
+                sessionStorage.removeItem("trvyeAccessToken");
+              }}
+            >
+              <IconArrowLeft />
+              <span>Log out</span>
+            </Link>
+          </SidebarMenuButton>
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
