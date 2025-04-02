@@ -1,5 +1,9 @@
 # Fintech Investment App - Assessment
 
+## Live Demo
+
+[Live Demo](https://fintech-investment-app.vercel.app/dashboard)
+
 ## Overview
 
 The Fintech Investment App is a web application for investment management. This app allows users to track their investments, analyze spending and saving comparison, and manage their goals effectively.
